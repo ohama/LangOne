@@ -13,7 +13,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
 | Phase 1: Lexer (토큰화) | **Completed** | 4/4 |
-| Phase 2: Parser (구문 분석) | **In Progress** | 3/5 |
+| Phase 2: Parser (구문 분석) | **In Progress** | 4/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
 
@@ -290,15 +290,15 @@ LangOne/
 **Blocks**: Step 2.5
 
 **Tests**:
-- [ ] Test: parse "2 * 3"
-- [ ] Test: parse "6 / 2"
-- [ ] Test: precedence "1 + 2 * 3" = 1 + (2 * 3)
+- [x] Test: parse "2 * 3"
+- [x] Test: parse "6 / 2"
+- [x] Test: precedence "1 + 2 * 3" = 1 + (2 * 3)
 
 **DoD**:
-- [ ] 곱셈/나눗셈 파싱 테스트 통과
-- [ ] 우선순위 테스트 통과
+- [x] 곱셈/나눗셈 파싱 테스트 통과
+- [x] 우선순위 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

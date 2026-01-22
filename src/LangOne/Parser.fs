@@ -27,22 +27,39 @@ let private parsePrimary state =
     | EOF -> Error UnexpectedEndOfInput
     | token -> Error (UnexpectedToken (token, "number"))
 
-/// Parse addition and subtraction (left-associative)
-let private parseAddSub state =
-    // Parse left operand
+/// Parse multiplication and division (higher precedence, left-associative)
+let private parseMulDiv state =
     parsePrimary state
     |> Result.bind (fun (left, state) ->
-        // Loop to handle left-associativity
+        let rec loop left state =
+            match current state with
+            | Star ->
+                let state = advance state
+                parsePrimary state
+                |> Result.bind (fun (right, state) ->
+                    loop (Binary(left, Multiply, right)) state)
+            | Slash ->
+                let state = advance state
+                parsePrimary state
+                |> Result.bind (fun (right, state) ->
+                    loop (Binary(left, Divide, right)) state)
+            | _ -> Ok (left, state)
+        loop left state)
+
+/// Parse addition and subtraction (lower precedence, left-associative)
+let private parseAddSub state =
+    parseMulDiv state
+    |> Result.bind (fun (left, state) ->
         let rec loop left state =
             match current state with
             | Plus ->
                 let state = advance state
-                parsePrimary state
+                parseMulDiv state
                 |> Result.bind (fun (right, state) ->
                     loop (Binary(left, Add, right)) state)
             | Minus ->
                 let state = advance state
-                parsePrimary state
+                parseMulDiv state
                 |> Result.bind (fun (right, state) ->
                     loop (Binary(left, Subtract, right)) state)
             | _ -> Ok (left, state)

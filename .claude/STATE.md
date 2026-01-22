@@ -16,12 +16,13 @@ Phase 2: Parser (구문 분석)
 - Step 2.1: AST 타입 정의 ✓
 - Step 2.2: 숫자 리터럴 파싱 ✓
 - Step 2.3: 덧셈/뺄셈 파싱 ✓
+- Step 2.4: 곱셈/나눗셈 파싱 ✓
 
 ## In Progress
 - (없음)
 
 ## Next Step
-Step 2.4: 곱셈/나눗셈 파싱
+Step 2.5: 괄호 파싱
 
 ## Blockers
 - (없음)
@@ -29,7 +30,7 @@ Step 2.4: 곱셈/나눗셈 파싱
 ## Evidence
 ```
 $ dotnet run --project tests/LangOne.Tests
-EXPECTO! 40 tests run – 40 passed, 0 ignored, 0 failed, 0 errored. Success!
+EXPECTO! 43 tests run – 43 passed, 0 ignored, 0 failed, 0 errored. Success!
 ```
 
 ---

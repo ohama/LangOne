@@ -52,8 +52,36 @@ let addSubTests =
         }
     ]
 
+let mulDivTests =
+    testList "Parser multiplication/division tests" [
+        test "parse 2 * 3" {
+            // 2 * 3 => Binary(Literal 2, Multiply, Literal 3)
+            let tokens = [Number 2.0; Star; Number 3.0; EOF]
+            let result = parse tokens
+            let expected = Binary(Literal 2.0, Multiply, Literal 3.0)
+            Expect.equal result (Ok expected) "Should parse multiplication"
+        }
+
+        test "parse 6 / 2" {
+            // 6 / 2 => Binary(Literal 6, Divide, Literal 2)
+            let tokens = [Number 6.0; Slash; Number 2.0; EOF]
+            let result = parse tokens
+            let expected = Binary(Literal 6.0, Divide, Literal 2.0)
+            Expect.equal result (Ok expected) "Should parse division"
+        }
+
+        test "precedence 1 + 2 * 3 = 1 + (2 * 3)" {
+            // 1 + 2 * 3 => Binary(Literal 1, Add, Binary(Literal 2, Multiply, Literal 3))
+            let tokens = [Number 1.0; Plus; Number 2.0; Star; Number 3.0; EOF]
+            let result = parse tokens
+            let expected = Binary(Literal 1.0, Add, Binary(Literal 2.0, Multiply, Literal 3.0))
+            Expect.equal result (Ok expected) "Multiplication should have higher precedence than addition"
+        }
+    ]
+
 let allParserTests =
     testList "Parser tests" [
         literalTests
         addSubTests
+        mulDivTests
     ]
