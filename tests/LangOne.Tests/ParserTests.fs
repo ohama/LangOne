@@ -79,9 +79,44 @@ let mulDivTests =
         }
     ]
 
+let parenTests =
+    testList "Parser parentheses tests" [
+        test "parse (1 + 2)" {
+            // (1 + 2) => Binary(Literal 1, Add, Literal 2)
+            let tokens = [LParen; Number 1.0; Plus; Number 2.0; RParen; EOF]
+            let result = parse tokens
+            let expected = Binary(Literal 1.0, Add, Literal 2.0)
+            Expect.equal result (Ok expected) "Should parse parenthesized expression"
+        }
+
+        test "parse (1 + 2) * 3 overrides precedence" {
+            // (1 + 2) * 3 => Binary(Binary(1, Add, 2), Multiply, 3)
+            let tokens = [LParen; Number 1.0; Plus; Number 2.0; RParen; Star; Number 3.0; EOF]
+            let result = parse tokens
+            let expected = Binary(Binary(Literal 1.0, Add, Literal 2.0), Multiply, Literal 3.0)
+            Expect.equal result (Ok expected) "Parentheses should override precedence"
+        }
+
+        test "parse nested parentheses ((1 + 2) * 3)" {
+            // ((1 + 2) * 3) => Binary(Binary(1, Add, 2), Multiply, 3)
+            let tokens = [LParen; LParen; Number 1.0; Plus; Number 2.0; RParen; Star; Number 3.0; RParen; EOF]
+            let result = parse tokens
+            let expected = Binary(Binary(Literal 1.0, Add, Literal 2.0), Multiply, Literal 3.0)
+            Expect.equal result (Ok expected) "Should handle nested parentheses"
+        }
+
+        test "mismatched parentheses error (1 + 2" {
+            // Missing closing paren
+            let tokens = [LParen; Number 1.0; Plus; Number 2.0; EOF]
+            let result = parse tokens
+            Expect.isError result "Should return error for missing closing parenthesis"
+        }
+    ]
+
 let allParserTests =
     testList "Parser tests" [
         literalTests
         addSubTests
         mulDivTests
+        parenTests
     ]

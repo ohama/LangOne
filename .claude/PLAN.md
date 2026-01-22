@@ -13,7 +13,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
 | Phase 1: Lexer (토큰화) | **Completed** | 4/4 |
-| Phase 2: Parser (구문 분석) | **In Progress** | 4/5 |
+| Phase 2: Parser (구문 분석) | **Completed** | 5/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
 
@@ -310,16 +310,16 @@ LangOne/
 **Blocks**: Step 3.1
 
 **Tests**:
-- [ ] Test: parse "(1 + 2)"
-- [ ] Test: parse "(1 + 2) * 3" overrides precedence
-- [ ] Test: nested parentheses
-- [ ] Test: mismatched parentheses error
+- [x] Test: parse "(1 + 2)"
+- [x] Test: parse "(1 + 2) * 3" overrides precedence
+- [x] Test: nested parentheses
+- [x] Test: mismatched parentheses error
 
 **DoD**:
-- [ ] 괄호 파싱 테스트 통과
-- [ ] 에러 처리 테스트 통과
+- [x] 괄호 파싱 테스트 통과
+- [x] 에러 처리 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

@@ -20,15 +20,22 @@ let private advance state =
 let private isAtEnd state =
     current state = EOF
 
-/// Parse a primary expression (number literal)
-let private parsePrimary state =
+/// Parse a primary expression (number literal or parenthesized expression)
+let rec private parsePrimary state =
     match current state with
     | Number n -> Ok (Literal n, advance state)
+    | LParen ->
+        let state = advance state // consume '('
+        parseExpr state
+        |> Result.bind (fun (expr, state) ->
+            match current state with
+            | RParen -> Ok (expr, advance state) // consume ')'
+            | _ -> Error MismatchedParenthesis)
     | EOF -> Error UnexpectedEndOfInput
-    | token -> Error (UnexpectedToken (token, "number"))
+    | token -> Error (UnexpectedToken (token, "number or '('"))
 
 /// Parse multiplication and division (higher precedence, left-associative)
-let private parseMulDiv state =
+and private parseMulDiv state =
     parsePrimary state
     |> Result.bind (fun (left, state) ->
         let rec loop left state =
@@ -47,7 +54,7 @@ let private parseMulDiv state =
         loop left state)
 
 /// Parse addition and subtraction (lower precedence, left-associative)
-let private parseAddSub state =
+and private parseAddSub state =
     parseMulDiv state
     |> Result.bind (fun (left, state) ->
         let rec loop left state =
@@ -65,8 +72,8 @@ let private parseAddSub state =
             | _ -> Ok (left, state)
         loop left state)
 
-/// Parse expression (entry point)
-let private parseExpr state =
+/// Parse expression (entry point for internal recursion)
+and private parseExpr state =
     parseAddSub state
 
 /// Parse a list of tokens into an AST expression
