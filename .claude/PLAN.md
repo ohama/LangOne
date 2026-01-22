@@ -12,7 +12,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 | Phase | 상태 | 진행률 |
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
-| Phase 1: Lexer (토큰화) | **In Progress** | 1/4 |
+| Phase 1: Lexer (토큰화) | **In Progress** | 2/4 |
 | Phase 2: Parser (구문 분석) | Not Started | 0/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
@@ -159,17 +159,17 @@ LangOne/
 **Blocks**: Step 1.3
 
 **Tests**:
-- [ ] Test: tokenize plus (+)
-- [ ] Test: tokenize minus (-)
-- [ ] Test: tokenize star (*)
-- [ ] Test: tokenize slash (/)
-- [ ] Test: tokenize parentheses
-- [ ] Test: unknown character returns error
+- [x] Test: tokenize plus (+)
+- [x] Test: tokenize minus (-)
+- [x] Test: tokenize star (*)
+- [x] Test: tokenize slash (/)
+- [x] Test: tokenize parentheses
+- [x] Test: unknown character returns error
 
 **DoD**:
-- [ ] 모든 연산자/괄호 토큰 테스트 통과
+- [x] 모든 연산자/괄호 토큰 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 
