@@ -11,7 +11,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 
 | Phase | 상태 | 진행률 |
 |-------|------|--------|
-| Phase 0: 프로젝트 초기 설정 | **In Progress** | 1/2 |
+| Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
 | Phase 1: Lexer (토큰화) | Not Started | 0/4 |
 | Phase 2: Parser (구문 분석) | Not Started | 0/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
@@ -108,15 +108,15 @@ LangOne/
 **Blocks**: Step 1.1
 
 **Tasks**:
-- [ ] 테스트 프로젝트에 Expecto, FsCheck 설치
-- [ ] 메인 프로젝트에 Serilog 설치
-- [ ] 기본 테스트 파일 생성 및 실행 확인
+- [x] 테스트 프로젝트에 Expecto, FsCheck 설치
+- [x] 메인 프로젝트에 Serilog 설치
+- [x] 기본 테스트 파일 생성 및 실행 확인
 
 **DoD**:
-- [ ] `dotnet build` 성공
-- [ ] `dotnet run --project tests/LangOne.Tests` 테스트 통과
+- [x] `dotnet build` 성공
+- [x] `dotnet run --project tests/LangOne.Tests` 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

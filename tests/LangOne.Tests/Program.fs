@@ -1,2 +1,23 @@
-﻿// For more information see https://aka.ms/fsharp-console-apps
-printfn "Hello from F#"
+module LangOne.Tests.Program
+
+open Expecto
+
+let smokeTests =
+    testList "Smoke tests" [
+        test "basic math works" {
+            Expect.equal (1 + 1) 2 "1 + 1 should equal 2"
+        }
+
+        test "string comparison works" {
+            Expect.equal "hello" "hello" "Strings should match"
+        }
+    ]
+
+let allTests =
+    testList "All tests" [
+        smokeTests
+    ]
+
+[<EntryPoint>]
+let main args =
+    runTestsWithCLIArgs [] args allTests
