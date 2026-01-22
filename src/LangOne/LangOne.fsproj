@@ -10,6 +10,7 @@
     <Compile Include="Result.fs" />
     <Compile Include="Logging.fs" />
     <Compile Include="Lexer.fs" />
+    <Compile Include="Parser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

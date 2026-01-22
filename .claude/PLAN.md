@@ -13,7 +13,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
 | Phase 1: Lexer (토큰화) | **Completed** | 4/4 |
-| Phase 2: Parser (구문 분석) | **In Progress** | 1/5 |
+| Phase 2: Parser (구문 분석) | **In Progress** | 2/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
 
@@ -251,14 +251,14 @@ LangOne/
 **Blocks**: Step 2.3
 
 **Tests**:
-- [ ] Test: parse single number
-- [ ] Test: parse decimal number
-- [ ] Test: parse empty input returns error
+- [x] Test: parse single number
+- [x] Test: parse decimal number
+- [x] Test: parse empty input returns error
 
 **DoD**:
-- [ ] 숫자 리터럴 파싱 테스트 통과
+- [x] 숫자 리터럴 파싱 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

@@ -18,6 +18,7 @@ let allTests =
         smokeTests
         TypesTests.allTypesTests
         LexerTests.allLexerTests
+        ParserTests.allParserTests
     ]
 
 [<EntryPoint>]
