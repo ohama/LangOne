@@ -44,7 +44,31 @@ let singleTokenTests =
         }
     ]
 
+let numberTokenTests =
+    testList "Number token lexing" [
+        test "tokenize single digit" {
+            let result = tokenize "5"
+            Expect.equal result (Ok [Number 5.0; EOF]) "Should tokenize 5 as Number 5.0"
+        }
+
+        test "tokenize multi-digit number" {
+            let result = tokenize "123"
+            Expect.equal result (Ok [Number 123.0; EOF]) "Should tokenize 123 as Number 123.0"
+        }
+
+        test "tokenize decimal number" {
+            let result = tokenize "3.14"
+            Expect.equal result (Ok [Number 3.14; EOF]) "Should tokenize 3.14 as Number 3.14"
+        }
+
+        test "tokenize number with leading zero" {
+            let result = tokenize "0.5"
+            Expect.equal result (Ok [Number 0.5; EOF]) "Should tokenize 0.5 as Number 0.5"
+        }
+    ]
+
 let allLexerTests =
     testList "Lexer tests" [
         singleTokenTests
+        numberTokenTests
     ]
