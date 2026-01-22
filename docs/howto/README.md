@@ -13,6 +13,7 @@ F# 인터프리터 구현 튜토리얼 문서입니다.
 | [lexer-expressions](./lexer-expressions.md) | 복합 표현식 Lexing과 Serilog 로깅 | Step 1.4 |
 | [ast-types](./ast-types.md) | AST 타입과 재귀적 구조 정의 | Step 2.1 |
 | [parser-literals](./parser-literals.md) | Parser 기초: 숫자 리터럴 파싱 | Step 2.2 |
+| [parser-precedence](./parser-precedence.md) | 연산자 우선순위와 괄호 파싱 | Step 2.3-2.5 |
 
 ## 학습 순서
 
@@ -28,3 +29,4 @@ F# 인터프리터 구현 튜토리얼 문서입니다.
 
 6. **ast-types** - AST 타입 정의와 재귀적 구조
 7. **parser-literals** - 숫자 리터럴 파싱
+8. **parser-precedence** - 연산자 우선순위와 괄호
