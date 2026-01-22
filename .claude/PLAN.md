@@ -11,7 +11,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 
 | Phase | 상태 | 진행률 |
 |-------|------|--------|
-| Phase 0: 프로젝트 초기 설정 | Not Started | 0/2 |
+| Phase 0: 프로젝트 초기 설정 | **In Progress** | 1/2 |
 | Phase 1: Lexer (토큰화) | Not Started | 0/4 |
 | Phase 2: Parser (구문 분석) | Not Started | 0/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
@@ -88,15 +88,15 @@ LangOne/
 **Blocks**: Step 0.2
 
 **Tasks**:
-- [ ] `LangOne.sln` 솔루션 생성
-- [ ] `src/LangOne/LangOne.fsproj` 콘솔 프로젝트 생성
-- [ ] `tests/LangOne.Tests/LangOne.Tests.fsproj` 테스트 프로젝트 생성
-- [ ] 프로젝트 참조 연결
+- [x] `LangOne.sln` 솔루션 생성
+- [x] `src/LangOne/LangOne.fsproj` 콘솔 프로젝트 생성
+- [x] `tests/LangOne.Tests/LangOne.Tests.fsproj` 테스트 프로젝트 생성
+- [x] 프로젝트 참조 연결
 
 **DoD**:
-- [ ] `dotnet build` 성공
+- [x] `dotnet build` 성공
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 
