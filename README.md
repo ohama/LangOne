@@ -1,460 +1,123 @@
-# Claude Code Project Template
+# LangOne
 
-[![Korean](https://img.shields.io/badge/lang-한국어-blue.svg)](README.ko.md)
+F#으로 작성된 간단한 4칙 연산 표현식 인터프리터입니다.
 
-A template for large-scale project development using Claude Code.
+## 기능
 
-## Features
+- 4칙 연산: `+`, `-`, `*`, `/`
+- 연산자 우선순위: `*`, `/`가 `+`, `-`보다 먼저 계산
+- 괄호 지원: `(1 + 2) * 3`
+- 소수점 지원: `3.14 * 2`
 
-- **TDD-based Development**: Red → Green → Refactor cycle
-- **Phase > Step Workflow**: Systematic task division and progress management
-- **Knowledge Management**: Document discoveries, decisions, and patterns
-- **Custom Commands**: Automate repetitive tasks
-- **Skills**: Language/framework-specific expert guidelines
-
----
-
-## Getting Started
-
-### 1. Copy Template
+## 설치
 
 ```bash
-cp -r MyTemplate /path/to/your/project/.claude
+# 저장소 클론
+git clone https://github.com/your-username/LangOne.git
+cd LangOne
+
+# 빌드
+dotnet build
 ```
 
-Or for a new project:
+## 사용법
+
+### REPL 모드
 
 ```bash
-git clone <this-repo> my-project
-cd my-project
-rm -rf .git
-git init
+dotnet run --project src/LangOne
 ```
 
-### 2. Project Setup
-
-1. `.claude/PLAN.md` - Write project goals and Phase/Step plan
-2. `.claude/knowledge/ARCHITECTURE.md` - Define project structure
-3. `.claude/knowledge/BUILD.md` - Set build commands
-
-### 3. Start Working
-
 ```
-/startsession
-```
+LangOne - Simple Expression Interpreter
+Type an expression or 'exit' to quit
 
----
+> 1 + 2
+= 3
 
-## Directory Structure
+> 1 + 2 * 3
+= 7
 
-```
-.claude/
-├── PLAN.md              # Project plan with Phase > Step structure
-├── STATE.md             # Current progress state
-├── CACHE.md             # Temporary discoveries
-├── HISTORY.md           # Summary of key decisions/milestones
-├── DECISIONS.md         # Technical decision records
-├── README.md            # .claude directory guide
-├── USAGE.md             # Command usage scenarios
-│
-├── commands/            # Custom commands
-│   ├── startsession.md  # Start session
-│   ├── endsession.md    # End session
-│   ├── nextstep.md      # Start new Step
-│   ├── endstep.md       # Complete Step
-│   ├── tdd.md           # TDD cycle
-│   ├── phase.md         # Phase management
-│   ├── status.md        # Status check
-│   ├── issue.md         # Issue management
-│   ├── flush.md         # Cache cleanup
-│   ├── commit.md        # Smart commit
-│   ├── release.md       # Release
-│   └── ...
-│
-├── skills/              # Language/framework experts
-│   └── fsharp.md        # F# expert (ROP, Expecto, Serilog)
-│
-├── knowledge/           # Project knowledge
-│   ├── ARCHITECTURE.md  # Project structure
-│   ├── BUILD.md         # Build guide
-│   ├── TESTING.md       # Testing guide
-│   ├── TDD.md           # TDD cycle
-│   ├── PATTERNS.md      # Code patterns
-│   └── RULES.md         # Development rules
-│
-└── prompts/             # Reusable prompts
-    ├── prompt-logger.md
-    └── history-summarizer.md
+> (1 + 2) * 3
+= 9
 
-docs/
-├── spec/                # Specification documents
-└── issues/              # Issue records
+> 10 / 0
+Eval error: DivisionByZero
+
+> exit
+Goodbye!
 ```
 
----
+### 라이브러리로 사용
 
-## Workflow
-
-### Basic Work Flow
-
-```
-/startsession → /nextstep → /tdd (repeat) → /endstep → /endsession
-```
-
-### Phase Transition
-
-```
-/phase status → /phase complete → /phase next
-```
-
-### Work Structure
-
-```
-Phase 1: (Phase Name)
-  └─ Step 1.1: (Step Name)     ← 1-2 hour scope
-  └─ Step 1.2: (Step Name)
-  └─ Step 1.3: (Step Name)
-Phase 2: (Phase Name)
-  └─ Step 2.1: (Step Name)
-```
-
----
-
-## Command List
-
-### Session Management
-
-| Command | Description |
-|---------|-------------|
-| `/startsession` | Start work session, load context |
-| `/endsession` | End session, save state |
-| `/status` | Check current status |
-
-### Step Management
-
-| Command | Description |
-|---------|-------------|
-| `/nextstep` | Start next Step |
-| `/nextstep "goal"` | Create Step with new goal |
-| `/endstep` | Complete current Step |
-| `/tdd` | Execute TDD cycle |
-
-### Phase Management
-
-| Command | Description |
-|---------|-------------|
-| `/phase status` | Phase progress status |
-| `/phase complete` | Complete current Phase |
-| `/phase next` | Start next Phase |
-
-### Knowledge Management
-
-| Command | Description |
-|---------|-------------|
-| `/flush` | Organize CACHE → knowledge files |
-| `/issue` | Record issue |
-| `/issue resolve <id>` | Resolve issue |
-
-### Release
-
-| Command | Description |
-|---------|-------------|
-| `/commit` | Smart commit (gitignore + grouped commits) |
-| `/release` | Version upgrade + CHANGELOG |
-| `/howto` | Generate tutorial documentation |
-
----
-
-## CACHE and Knowledge Management
-
-### What is CACHE?
-
-`.claude/CACHE.md` is a file for storing temporary information discovered during work.
-
-**Who records it?**
-- **Claude automatically** records findings during work
-- **By user request** - "Record this in CACHE"
-
-**When to record?**
-- When discovering new patterns during coding
-- When finding anomalies after build/test execution
-- When discovering project rules or constraints
-- When finding TODOs to organize later
-
-**Purpose**:
-- Findings during work (bugs, improvements, anomalies)
-- Notes to organize later
-- TODO items
-
-**Structure**:
-```markdown
-# CACHE
-
-**Status**: CLEAN | DIRTY
-
----
-
-## Discoveries
-- --release flag needed for build
-- API response time is slow
-
-## Notes
-- Refactoring ideas
-
-## TODO (process later)
-- Update documentation
-```
-
-**Status**:
-- `CLEAN`: Nothing to organize
-- `DIRTY`: `/flush` needed
-
-### /flush Command
-
-Categorizes and moves CACHE contents to appropriate knowledge files.
-
-**How it works**:
-
-```
-CACHE.md (DIRTY)
-    │
-    ├─ Build related ────→ knowledge/BUILD.md
-    ├─ Test related ─────→ knowledge/TESTING.md
-    ├─ TDD related ──────→ knowledge/TDD.md
-    ├─ Code patterns ────→ knowledge/PATTERNS.md
-    └─ Rules/constraints → knowledge/RULES.md
-    │
-    ▼
-CACHE.md (CLEAN)
-```
-
-**When to use**:
-- Before ending session (before `/endsession`)
-- When CACHE has accumulated a lot
-- After completing a Step
-
-**Example**:
-```
-User: /flush
-
-Claude: CACHE status: DIRTY (5 items)
-
-Classification results:
-- Moved to BUILD.md: 2 items
-  - "dotnet build --configuration Release required"
-  - "DOTNET_ROOT environment variable setting required"
-- Moved to PATTERNS.md: 2 items
-  - "Result type chaining pattern"
-  - "Async error handling pattern"
-- Moved to RULES.md: 1 item
-  - "XML comments required for public API"
-
-CACHE cleanup complete. Status: CLEAN
-```
-
-### Why use CACHE?
-
-1. **Context Preservation**: Discoveries are not lost between sessions
-2. **Knowledge Accumulation**: Project know-how accumulates in knowledge files
-3. **Quick Recording**: Note-taking without interrupting work
-4. **Systematic Organization**: Auto-categorization with `/flush`
-
----
-
-## TDD Workflow
-
-### /tdd Command
-
-Executes the TDD (Test-Driven Development) cycle.
-
-**Cycle**:
-
-```
-┌─────────────────────────────────────────────────────┐
-│                                                     │
-│   ┌─────────┐     ┌─────────┐     ┌──────────┐     │
-│   │   Red   │ ──→ │  Green  │ ──→ │ Refactor │     │
-│   └─────────┘     └─────────┘     └──────────┘     │
-│        │                               │           │
-│        └───────────────────────────────┘           │
-│                    Repeat                          │
-└─────────────────────────────────────────────────────┘
-```
-
-### 1. Red - Write Failing Test
-
-```
-Goal: Confirm that the test fails
-
-- Write test first for the feature to implement
-- Run test to confirm failure
-- Verify failure message is as expected
-```
-
-**Example**:
 ```fsharp
-[<Test>]
-let ``should validate email format`` () =
-    let result = validateEmail "invalid-email"
-    Expect.isError result "Invalid email should fail"
+open LangOne.Interpreter
+
+let result = interpret "1 + 2 * 3"
+// Ok 7.0
+
+let error = interpret "5 / 0"
+// Error (EvaluatorError DivisionByZero)
 ```
 
-### 2. Green - Minimal Implementation
+## 아키텍처
 
 ```
-Goal: Write minimal code to pass the test
-
-- Doesn't need to be perfect code
-- Hardcoding is allowed
-- Just confirm test passes
+"1 + 2 * 3"
+     │
+     ▼
+┌─────────┐
+│  Lexer  │  → [Number 1; Plus; Number 2; Star; Number 3; EOF]
+└─────────┘
+     │
+     ▼
+┌─────────┐
+│ Parser  │  → Binary(Literal 1, Add, Binary(Literal 2, Multiply, Literal 3))
+└─────────┘
+     │
+     ▼
+┌──────────┐
+│Evaluator │  → Ok 7.0
+└──────────┘
 ```
 
-**Example**:
-```fsharp
-let validateEmail email =
-    if email.Contains("@") then Ok email
-    else Error "Invalid email"
+## 테스트
+
+```bash
+# 모든 테스트 실행
+dotnet test
+
+# 특정 테스트 필터
+dotnet run --project tests/LangOne.Tests -- --filter "Lexer"
 ```
 
-### 3. Refactor - Code Improvement
+## 기술 스택
+
+- **F#** - 함수형 프로그래밍 언어
+- **.NET 8** - 런타임
+- **Expecto** - 테스트 프레임워크
+- **FsCheck** - Property-based 테스트
+- **Serilog** - 구조화된 로깅
+
+## 프로젝트 구조
 
 ```
-Goal: Improve code quality (tests keep passing)
-
-- Remove duplication
-- Clear naming
-- Structure improvement
-- Verify tests still pass
+LangOne/
+├── src/LangOne/
+│   ├── Types.fs           # 토큰, AST, 에러 타입
+│   ├── Lexer.fs           # 토큰화
+│   ├── Parser.fs          # 구문 분석
+│   ├── Evaluator.fs       # 평가
+│   ├── Interpreter.fs     # 통합 파이프라인
+│   └── Program.fs         # REPL
+├── tests/LangOne.Tests/
+│   ├── LexerTests.fs
+│   ├── ParserTests.fs
+│   ├── EvaluatorTests.fs
+│   └── IntegrationTests.fs
+└── LangOne.sln
 ```
 
-**Example**:
-```fsharp
-let private isValidEmailFormat email =
-    let emailRegex = Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-    emailRegex.IsMatch(email)
-
-let validateEmail email =
-    if String.IsNullOrWhiteSpace(email) then
-        Error EmptyEmail
-    elif not (isValidEmailFormat email) then
-        Error (InvalidEmailFormat email)
-    else
-        Ok email
-```
-
-### TDD Rules
-
-| Rule | Description |
-|------|-------------|
-| Test First | No production code without tests |
-| One at a Time | Write only one test at a time |
-| Bug Reproduction | Write reproduction test first when fixing bugs |
-| Focus on Refactoring | No new features during refactoring |
-
-### TDD Usage Example
-
-```
-User: /tdd
-
-Claude: Current Step: 1.2 - Email Validation
-
-[Red] Writing test:
-- Added email validation test to tests/ValidationTests.fs
-- Running test... Failed ✓
-
-[Green] Minimal implementation:
-- Added validateEmail function to src/Validation.fs
-- Running test... Passed ✓
-
-[Refactor] Code improvement:
-- Improved validation logic with regex
-- Refined error types
-- Running test... Passed ✓
-
-STATE.md updated.
-Proceed to next test?
-```
-
----
-
-## Skills
-
-### F# Expert (`skills/fsharp.md`)
-
-Expert guidelines automatically activated for F# projects:
-
-- **Railway Oriented Programming (ROP)**: Apply ROP pattern to all error handling
-- **Expecto + FsCheck**: Testing framework
-- **Serilog**: Structured logging
-
-### Adding New Skills
-
-Create a markdown file in `.claude/skills/` directory:
-
-```markdown
-# Skill Name
-
-## Activation Conditions
-- File extension: *.xx
-- Specific conditions
-
-## Core Principles
-...
-
-## Code Style
-...
-```
-
----
-
-## Customization
-
-### Adding New Commands
-
-Create a markdown file in `.claude/commands/` directory:
-
-```markdown
-# command-name
-
-Description
-
-## Usage
-/command-name [args]
-
-## Procedure
-1. ...
-2. ...
-
-## Rules
-- ...
-```
-
-### Modifying Knowledge Files
-
-Modify `.claude/knowledge/` files to fit your project:
-
-- `ARCHITECTURE.md`: Project structure
-- `BUILD.md`: Build commands
-- `TESTING.md`: Testing strategy
-- `PATTERNS.md`: Project code patterns
-- `RULES.md`: Team rules
-
----
-
-## Tips
-
-1. **Always Start/End Sessions**: Use `/startsession` to start and `/endsession` to end for context preservation
-
-2. **Step Size**: Scope completable within 1-2 hours
-
-3. **Flush Often**: Use `/flush` to organize accumulated CACHE into knowledge files
-
-4. **Record Issues Immediately**: `/issue` when discovered, `/issue resolve` when resolved
-
-5. **Use `/commit` Before Committing**: Automatic gitignore management and grouped file commits
-
----
-
-## License
+## 라이선스
 
 MIT License
