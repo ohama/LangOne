@@ -29,6 +29,54 @@ let tokenTests =
         }
     ]
 
+let exprTests =
+    testList "Expr tests" [
+        test "Literal creation works" {
+            let expr = Literal 42.0
+            Expect.equal expr (Literal 42.0) "Literal should be created correctly"
+        }
+
+        test "Binary expression creation works" {
+            let left = Literal 1.0
+            let right = Literal 2.0
+            let expr = Binary(left, Add, right)
+            Expect.equal expr (Binary(Literal 1.0, Add, Literal 2.0)) "Binary should be created correctly"
+        }
+
+        test "Nested binary expression works" {
+            // (1 + 2) * 3
+            let inner = Binary(Literal 1.0, Add, Literal 2.0)
+            let outer = Binary(inner, Multiply, Literal 3.0)
+            Expect.equal outer (Binary(Binary(Literal 1.0, Add, Literal 2.0), Multiply, Literal 3.0)) "Nested binary should work"
+        }
+
+        test "BinaryOp types work" {
+            Expect.equal Add Add "Add should equal Add"
+            Expect.equal Subtract Subtract "Subtract should equal Subtract"
+            Expect.equal Multiply Multiply "Multiply should equal Multiply"
+            Expect.equal Divide Divide "Divide should equal Divide"
+            Expect.notEqual Add Subtract "Different ops should not be equal"
+        }
+    ]
+
+let parseErrorTests =
+    testList "ParseError tests" [
+        test "UnexpectedToken creation works" {
+            let err = UnexpectedToken(Plus, "number")
+            Expect.equal err (UnexpectedToken(Plus, "number")) "UnexpectedToken should be created correctly"
+        }
+
+        test "UnexpectedEndOfInput works" {
+            let err = UnexpectedEndOfInput
+            Expect.equal err UnexpectedEndOfInput "UnexpectedEndOfInput should work"
+        }
+
+        test "MismatchedParenthesis works" {
+            let err = MismatchedParenthesis
+            Expect.equal err MismatchedParenthesis "MismatchedParenthesis should work"
+        }
+    ]
+
 let resultTests =
     testList "Result tests" [
         test "Result bind works with Ok" {
@@ -63,5 +111,7 @@ let resultTests =
 let allTypesTests =
     testList "Types and Result tests" [
         tokenTests
+        exprTests
+        parseErrorTests
         resultTests
     ]

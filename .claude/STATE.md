@@ -13,12 +13,13 @@ Phase 2: Parser (구문 분석)
 - Step 1.2: 단일 토큰 Lexing ✓
 - Step 1.3: 숫자 토큰 Lexing ✓
 - Step 1.4: 복합 표현식 Lexing ✓
+- Step 2.1: AST 타입 정의 ✓
 
 ## In Progress
 - (없음)
 
 ## Next Step
-Step 2.1: AST 타입 정의
+Step 2.2: 숫자 리터럴 파싱
 
 ## Blockers
 - (없음)
@@ -26,7 +27,7 @@ Step 2.1: AST 타입 정의
 ## Evidence
 ```
 $ dotnet run --project tests/LangOne.Tests
-EXPECTO! 27 tests run – 27 passed, 0 ignored, 0 failed, 0 errored. Success!
+EXPECTO! 34 tests run – 34 passed, 0 ignored, 0 failed, 0 errored. Success!
 ```
 
 ---

@@ -13,7 +13,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
 | Phase 1: Lexer (토큰화) | **Completed** | 4/4 |
-| Phase 2: Parser (구문 분석) | Not Started | 0/5 |
+| Phase 2: Parser (구문 분석) | **In Progress** | 1/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
 
@@ -232,14 +232,14 @@ LangOne/
 **Blocks**: Step 2.2
 
 **Tests**:
-- [ ] Test: Literal creation
-- [ ] Test: Binary expression creation
+- [x] Test: Literal creation
+- [x] Test: Binary expression creation
 
 **DoD**:
-- [ ] AST 타입 정의 완료
-- [ ] ParseError 타입 정의 완료
+- [x] AST 타입 정의 완료
+- [x] ParseError 타입 정의 완료
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 
