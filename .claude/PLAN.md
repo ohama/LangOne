@@ -12,7 +12,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 | Phase | 상태 | 진행률 |
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
-| Phase 1: Lexer (토큰화) | **In Progress** | 3/4 |
+| Phase 1: Lexer (토큰화) | **Completed** | 4/4 |
 | Phase 2: Parser (구문 분석) | Not Started | 0/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
@@ -200,16 +200,16 @@ LangOne/
 **Blocks**: Step 2.1
 
 **Tests**:
-- [ ] Test: tokenize "1 + 2"
-- [ ] Test: tokenize "1 + 2 * 3"
-- [ ] Test: tokenize "(1 + 2) * 3"
-- [ ] Test: tokenize without spaces
+- [x] Test: tokenize "1 + 2"
+- [x] Test: tokenize "1 + 2 * 3"
+- [x] Test: tokenize "(1 + 2) * 3"
+- [x] Test: tokenize without spaces
 
 **DoD**:
-- [ ] 복합 표현식 테스트 통과
-- [ ] Serilog 로깅 동작 확인
+- [x] 복합 표현식 테스트 통과
+- [x] Serilog 로깅 동작 확인
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

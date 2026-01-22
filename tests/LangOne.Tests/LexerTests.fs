@@ -67,8 +67,37 @@ let numberTokenTests =
         }
     ]
 
+let expressionTests =
+    testList "Expression lexing" [
+        test "tokenize 1 + 2" {
+            let result = tokenize "1 + 2"
+            Expect.equal result (Ok [Number 1.0; Plus; Number 2.0; EOF]) "Should tokenize 1 + 2"
+        }
+
+        test "tokenize 1 + 2 * 3" {
+            let result = tokenize "1 + 2 * 3"
+            Expect.equal result (Ok [Number 1.0; Plus; Number 2.0; Star; Number 3.0; EOF]) "Should tokenize 1 + 2 * 3"
+        }
+
+        test "tokenize (1 + 2) * 3" {
+            let result = tokenize "(1 + 2) * 3"
+            Expect.equal result (Ok [LParen; Number 1.0; Plus; Number 2.0; RParen; Star; Number 3.0; EOF]) "Should tokenize (1 + 2) * 3"
+        }
+
+        test "tokenize without spaces" {
+            let result = tokenize "1+2*3"
+            Expect.equal result (Ok [Number 1.0; Plus; Number 2.0; Star; Number 3.0; EOF]) "Should tokenize 1+2*3 without spaces"
+        }
+
+        test "tokenize with extra spaces" {
+            let result = tokenize "  1  +  2  "
+            Expect.equal result (Ok [Number 1.0; Plus; Number 2.0; EOF]) "Should ignore extra spaces"
+        }
+    ]
+
 let allLexerTests =
     testList "Lexer tests" [
         singleTokenTests
         numberTokenTests
+        expressionTests
     ]
