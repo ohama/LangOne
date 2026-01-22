@@ -12,7 +12,7 @@ F# 언어로 4칙 연산 표현식 인터프리터 구현
 | Phase | 상태 | 진행률 |
 |-------|------|--------|
 | Phase 0: 프로젝트 초기 설정 | **Completed** | 2/2 |
-| Phase 1: Lexer (토큰화) | Not Started | 0/4 |
+| Phase 1: Lexer (토큰화) | **In Progress** | 1/4 |
 | Phase 2: Parser (구문 분석) | Not Started | 0/5 |
 | Phase 3: Evaluator (평가) | Not Started | 0/3 |
 | Phase 4: 통합 및 마무리 | Not Started | 0/3 |
@@ -139,15 +139,15 @@ LangOne/
 **Blocks**: Step 1.2
 
 **Tests**:
-- [ ] Test: Token equality works
-- [ ] Test: Result bind works
-- [ ] Test: Result bind short-circuits on Error
+- [x] Test: Token equality works
+- [x] Test: Result bind works
+- [x] Test: Result bind short-circuits on Error
 
 **DoD**:
-- [ ] 모든 타입 정의 완료
-- [ ] ROP 헬퍼 함수 테스트 통과
+- [x] 모든 타입 정의 완료
+- [x] ROP 헬퍼 함수 테스트 통과
 
-**Status**: Not Started
+**Status**: **Completed**
 
 ---
 

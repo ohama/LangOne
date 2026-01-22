@@ -16,6 +16,7 @@ let smokeTests =
 let allTests =
     testList "All tests" [
         smokeTests
+        TypesTests.allTypesTests
     ]
 
 [<EntryPoint>]
